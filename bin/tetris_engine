@@ -1,0 +1,5 @@
+#!/usr/bin/python
+
+import tetris_engine
+
+print("Welcome to Simple Tetris Engine")
