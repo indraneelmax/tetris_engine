@@ -2,4 +2,4 @@
 
 import tetris_engine
 
-print("Welcome to Simple Tetris Engine")
+print("Welcome to Simple Tetris Engine - {}".format(tetris_engine.__version__))
