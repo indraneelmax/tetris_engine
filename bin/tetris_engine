@@ -1,5 +1,26 @@
 #!/usr/bin/python
+import os
+import sys
+
+import argparse
 
 import tetris_engine
 
-print("Welcome to Simple Tetris Engine - {}".format(tetris_engine.__version__))
+
+def main():
+    print("Welcome to Simple Tetris Engine - {}".format(tetris_engine.__version__))
+    parser = argparse.ArgumentParser(description="A Simple Tetris Engine.")
+    parser.add_argument("input_file", nargs=1, help="Path to input file")
+    parser.add_argument("output_file", nargs='?',
+                        help="Path to output file", default="output.txt",
+                        )
+
+    args = parser.parse_args(sys.argv[1:])
+    input_file = args.input_file[0]
+    output_file = args.output_file
+    print("Input File: ", input_file)
+    print("Output File: ", output_file)
+
+
+if __name__ == "__main__":
+    main()
