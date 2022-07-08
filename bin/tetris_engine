@@ -20,6 +20,10 @@ def main():
     output_file = args.output_file
     print("Input File: ", input_file)
     print("Output File: ", output_file)
+    if os.path.exists(input_file):
+        print("Input file exists")
+    else:
+        raise IOError("{} file does not exist".format(input_file))
 
 
 if __name__ == "__main__":
