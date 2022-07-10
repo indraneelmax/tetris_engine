@@ -14,6 +14,9 @@ class Coordinate(object):
         self.row = row
         self.col = col
 
+    def __repr__(self):
+        return "Coordinate({},{})".format(self.row, self.col)
+
 
 class InShape(object):
     """
@@ -25,7 +28,7 @@ class InShape(object):
         self.left_col = left_col
         pass
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
         Retruns a list of coordinates that are occupied by
         the shape based on the input coordinate representing
@@ -51,7 +54,7 @@ class QShape(InShape):
     def __init__(self, left_col=0):
         super(QShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -66,7 +69,7 @@ class QShape(InShape):
             Coordinate(row, col),
             Coordinate(row, col + 1),
             Coordinate(row - 1, col),
-            Coordinate(row - 1, col - 1),
+            Coordinate(row - 1, col + 1),
         ]
 
 
@@ -77,7 +80,7 @@ class ZShape(InShape):
     def __init__(self, left_col=0):
         super(ZShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -103,7 +106,7 @@ class SShape(InShape):
     def __init__(self, left_col=0):
         super(SShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -129,7 +132,7 @@ class TShape(InShape):
     def __init__(self, left_col=0):
         super(TShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -155,7 +158,7 @@ class IShape(InShape):
     def __init__(self, left_col=0):
         super(IShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -181,7 +184,7 @@ class LShape(InShape):
     def __init__(self, left_col=0):
         super(LShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
@@ -207,7 +210,7 @@ class JShape(InShape):
     def __init__(self, left_col=0):
         super(JShape, self).__init__(left_col)
 
-    def get_occupied_cells(self, pos_cord):
+    def get_coordinates(self, pos_cord):
         """
             Args:
                 pos_cord (Coordinate): Top left coordinate representing
