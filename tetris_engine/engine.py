@@ -16,6 +16,7 @@ class State(Enum):
 
 GRID_MAX_ROWS = 10
 GRID_MAX_COLS = 10
+HEIGHT_INIT = -1
 
 
 class TetrisEngine(object):
@@ -32,7 +33,7 @@ class TetrisEngine(object):
         """
         self.rows = tot_rows
         self.cols = tot_cols
-        self.__height = 0  # The current max height
+        self.__height = HEIGHT_INIT  # The current max height
         self._grid = []
 
     def initialize(self):
@@ -41,7 +42,7 @@ class TetrisEngine(object):
         """
         print("\n Initializing Engine...")
         self._grid = []
-        self.__height = 0
+        self.__height = HEIGHT_INIT
         for _row in range(self.rows):
             cols = [State.UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
@@ -201,9 +202,12 @@ class TetrisEngine(object):
         Args:
             row (int): The row.
         """
-        # We copy the higher row to lower row until one row above max height.
-        for cur_row in range(row + 1, self.height + 1):
+        # We copy the higher row to lower row until max height.
+        for cur_row in range(row + 1, self.height):
             self._grid[cur_row - 1] = self._grid[cur_row]
+
+        # Now just reinitialize the height row with unoccupied.
+        self._grid[self.__height] = [
+            State.UNOCCUPIED for col in range(self.cols)]
         # reduce the max height too.
         self.__height -= 1
-        # pass
