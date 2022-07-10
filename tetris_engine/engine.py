@@ -1,5 +1,7 @@
 
 from enum import Enum
+
+from tetris_engine.exceptions import TetrisEngineException
 from tetris_engine.shapes import Coordinate
 
 
@@ -66,7 +68,7 @@ class TetrisEngine(object):
             coord = Coordinate(row, col)
             if self.is_unoccupied([coord]):
                 return row
-        raise Exception(
+        raise TetrisEngineException(
             "Cannot find highest onoccupied row for col {}".format(col))
 
     def process_input(self, input_shape):
@@ -95,7 +97,8 @@ class TetrisEngine(object):
             # print(
             #     "{} Coord to occupy - {}".format(Coordinate(row, start_col), coords_to_occupy))
         if row == GRID_MAX_ROWS:
-            raise Exception("{} - Input cannot be placed".format(input_shape))
+            raise TetrisEngineException(
+                "{} - Input cannot be placed".format(input_shape))
         # We have found the row where it can be placed, so now mark the
         # coords occupied. Also mark all coordinates underneath the shape
         # as blocked if not already occupied.
