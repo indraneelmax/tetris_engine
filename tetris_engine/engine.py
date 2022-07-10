@@ -2,7 +2,11 @@
 from enum import Enum
 
 from tetris_engine.exceptions import TetrisEngineException
+from tetris_engine.log import get_logger
 from tetris_engine.shapes import Coordinate
+
+
+logger = get_logger(__name__)
 
 
 class State(Enum):
@@ -40,13 +44,12 @@ class TetrisEngine(object):
         """
         Reset/Initialize the Engine.
         """
-        print("\n Initializing Engine...")
+        logger.info("Initializing Engine...")
         self._grid = []
         self.__height = HEIGHT_INIT
         for _row in range(self.rows):
             cols = [State.UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
-        # print(self._grid)
 
     @property
     def height(self):
@@ -85,7 +88,6 @@ class TetrisEngine(object):
         """
         start_col = input_shape.left_col
         start_row = self.get_highest_unoccupied_row(start_col)
-        # print("Highes row - {}".format(start_row))
         coords_to_occupy = input_shape.get_coordinates(
             Coordinate(start_row, start_col))
         can_occupy = self.is_unoccupied(coords_to_occupy)
@@ -95,8 +97,6 @@ class TetrisEngine(object):
             coords_to_occupy = input_shape.get_coordinates(
                 Coordinate(row, start_col))
             can_occupy = self.is_unoccupied(coords_to_occupy)
-            # print(
-            #     "{} Coord to occupy - {}".format(Coordinate(row, start_col), coords_to_occupy))
         if row == GRID_MAX_ROWS:
             raise TetrisEngineException(
                 "{} - Input cannot be placed".format(input_shape))
@@ -106,7 +106,7 @@ class TetrisEngine(object):
         self.mark_coords_occupied_by_shape(coords_to_occupy)
         # print(self._grid)
         input_shape_coord = Coordinate(row, start_col)
-        print("Placed {} at {}".format(input_shape, input_shape_coord))
+        logger.info("Placed {} at {}".format(input_shape, input_shape_coord))
         self.update_height(input_shape_coord)
         self.check_and_remove_filled_rows()
         return input_shape_coord
@@ -157,10 +157,8 @@ class TetrisEngine(object):
         for coord in coords:
             row = coord.row
             col = coord.col
-            # print("Checking for occupancy - {}".format(coord), end=' ')
             if self.is_coord_out_of_bounds(coord):
                 return False
-            # print(self._grid[row][col])
             if self._grid[row][col] != State.UNOCCUPIED:
                 return False
         return True
@@ -192,7 +190,7 @@ class TetrisEngine(object):
             all_occupied = all(
                 [self._grid[row][col] == State.OCCUPIED for col in range(self.cols)])
             if all_occupied:
-                print("Row - {} to be removed".format(row))
+                logger.info("Row - {} to be removed".format(row))
                 self.remove_row(row)
 
     def remove_row(self, row):
