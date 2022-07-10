@@ -1,5 +1,5 @@
 
 
 class TetrisEngineException(Exception):
-    """Base Tetris Engne Exception."""
+    """Base Tetris Engine Exception."""
     pass
