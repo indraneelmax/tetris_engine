@@ -28,18 +28,17 @@ class TetrisEngine(object):
         self.cols = tot_cols
         self.__height = 0  # The current max height
         self._grid = []
-        self.initialize()
 
     def initialize(self):
         """
         Reset/Initialize the Engine.
         """
-        print("Initializing Engine...")
+        print("\n Initializing Engine...")
         self._grid = []
         for _row in range(self.rows):
             cols = [UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
-        print(self._grid)
+        # print(self._grid)
 
     @property
     def height(self):
