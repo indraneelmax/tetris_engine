@@ -98,3 +98,14 @@ def test_jshape_get_coordinate():
         Coordinate(-1, 0),
         Coordinate(-1, 1),
     ]
+
+
+def test_coordinate():
+    """
+    Test Coordinate for row, col
+    """
+    row = 1
+    col = 0
+    coord = Coordinate(row, col)
+    assert coord.row == row
+    assert coord.col == col
