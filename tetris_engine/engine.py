@@ -36,10 +36,10 @@ class TetrisEngine(object):
         """
         print("Initializing Engine...")
         self._grid = []
-        cols = [UNOCCUPIED for col in range(self.cols)]
         for _row in range(self.rows):
+            cols = [UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
-        # print(self._grid)
+        print(self._grid)
 
     @property
     def height(self):
@@ -91,6 +91,7 @@ class TetrisEngine(object):
         # coords occupied. Also mark all coordinates underneath the shape
         # as blocked.
         self.mark_coords_occupied_by_shape(coords_to_occupy)
+        # print(self._grid)
         return Coordinate(row, start_col)
 
     def mark_coords_occupied_by_shape(self, coords):
@@ -107,11 +108,11 @@ class TetrisEngine(object):
                 if self._grid[row][col] != OCCUPIED:
                     # do not overwrite the one used by an input.
                     self._grid[row][col] = BLOCKED
-                    print("Marked {} BLOCKED".format(Coordinate(row, col)))
+                    # print("Marked {} BLOCKED".format(Coordinate(row, col)))
                 row = row - 1
             # mark the current input's coordinate as occupied.
             self._grid[coord.row][coord.col] = OCCUPIED
-            print("Marked {} OCCUPIED".format(coord))
+            # print("Marked {} OCCUPIED".format(coord))
 
     def is_unoccupied(self, coords):
         """
