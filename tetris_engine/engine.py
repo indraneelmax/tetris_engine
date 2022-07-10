@@ -88,7 +88,7 @@ class TetrisEngine(object):
             raise Exception("{} - Input cannot be placed".format(input_shape))
         # We have found the row where it can be placed, so now mark the
         # coords occupied. Also mark all coordinates underneath the shape
-        # as blocked.
+        # as blocked if not already occupied.
         self.mark_coords_occupied_by_shape(coords_to_occupy)
         # print(self._grid)
         return Coordinate(row, start_col)
@@ -100,6 +100,8 @@ class TetrisEngine(object):
         Args:
             coords (list(Coordinate)): A list of Coordinate to mark occupied.
         """
+        # Also mark all coordinates underneath the shape
+        # as blocked if not already occupied.
         for coord in coords:
             row = coord.row
             col = coord.col
