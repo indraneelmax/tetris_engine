@@ -1,8 +1,5 @@
 
 
-from turtle import left
-
-
 class Coordinate(object):
     """
     Represents a cell in the Grid.
