@@ -17,6 +17,9 @@ class Coordinate(object):
     def __repr__(self):
         return "Coordinate({},{})".format(self.row, self.col)
 
+    def __eq__(self, other):
+        return self.row == other.row and self.col == other.col
+
 
 class InShape(object):
     """
@@ -224,6 +227,6 @@ class JShape(InShape):
         return [
             Coordinate(row, col + 1),
             Coordinate(row - 1, col + 1),
-            Coordinate(row - 2, col + 1),
             Coordinate(row - 2, col),
+            Coordinate(row - 2, col + 1),
         ]
