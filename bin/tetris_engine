@@ -36,12 +36,29 @@ def main():
     # Process Input file
     all_inputs = read_input(input_file)
     engine = TetrisEngine()
+    output_heights = []
     for run in all_inputs:
         engine.initialize()
         for input in run:
             print("Processing Input {}".format(input))
             _coordinate = engine.process_input(input)
         print("Max Height - {}".format(engine.height))
+        output_heights.append(str(engine.height) + "\n")
+    write_ouput(output_file, output_heights)
+
+
+def write_ouput(file_path, data):
+    """
+    Write data to given file.
+
+    Args:
+        file_path (str): Path to the output file.
+        data list(int): A list of integers.
+
+    """
+    with open(file_path, 'w') as fp:
+        fp.writelines(data)
+    print("\n Wrote - {}".format(file_path))
 
 
 def get_input_shape(input_str):
