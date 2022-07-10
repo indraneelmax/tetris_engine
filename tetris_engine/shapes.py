@@ -41,7 +41,7 @@ class InShape(object):
             list(Coordinate): List of Coordinates occupied by the
               shape.
         """
-        raise NotImplementedError("")
+        raise NotImplementedError("Please implement!")
 
     def __repr__(self):
         return "InShape-{}{}".format(self.shape_type, self.left_col)
