@@ -9,8 +9,7 @@ setup(
     author_email='indraneel.max@gmail.com',
     # license='BSD 2-clause',
     packages=['tetris_engine'],
-    install_requires=['mpi4py>=2.0',
-                      'numpy',
+    install_requires=['pytest',
                       ],
     scripts=["bin/tetris_engine"],
 )
