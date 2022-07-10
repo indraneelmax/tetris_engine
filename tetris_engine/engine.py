@@ -39,6 +39,7 @@ class TetrisEngine(object):
         """
         print("\n Initializing Engine...")
         self._grid = []
+        self.__height = 0
         for _row in range(self.rows):
             cols = [State.UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
@@ -47,7 +48,8 @@ class TetrisEngine(object):
     @property
     def height(self):
         """Return the current max height of the grid"""
-        return self.__height
+        # we start row with index 0 hence one extra
+        return self.__height + 1
 
     def get_highest_unoccupied_row(self, col):
         """
@@ -73,6 +75,10 @@ class TetrisEngine(object):
 
         Args:
             input_shape (InShape): An instance of InShape.
+
+        Returns:
+            Coordinate : The Coordinate at which the input shape
+              is placed.
         """
         start_col = input_shape.left_col
         start_row = self.get_highest_unoccupied_row(start_col)
@@ -95,7 +101,22 @@ class TetrisEngine(object):
         # as blocked if not already occupied.
         self.mark_coords_occupied_by_shape(coords_to_occupy)
         # print(self._grid)
-        return Coordinate(row, start_col)
+        input_shape_coord = Coordinate(row, start_col)
+        self.update_height(input_shape_coord)
+        self.check_and_remove_filled_rows()
+        return input_shape_coord
+
+    def update_height(self, input_shape_coord):
+        """
+        Calculate and Update the max height of the grid.
+
+        Args:
+            input_shape_coord (Coordinate): The Coordinate at which
+              the last input shape was placed.
+        """
+        row = input_shape_coord.row
+        if self.__height < row:
+            self.__height = row
 
     def mark_coords_occupied_by_shape(self, coords):
         """
@@ -155,3 +176,10 @@ class TetrisEngine(object):
         if col >= self.cols or col < 0:
             return True
         return False
+
+    def check_and_remove_filled_rows(self):
+        """
+        Check and remove a row which has all cells
+        occupied.
+        """
+        pass
