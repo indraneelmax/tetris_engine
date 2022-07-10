@@ -1,12 +1,16 @@
 
+from enum import Enum
 from tetris_engine.shapes import Coordinate
 
-# for coordinates that are used by a shape.
-OCCUPIED = 1
-# for coordinates that are free to use.
-UNOCCUPIED = 0
-# for coordinates that cannot be used a shape.
-BLOCKED = -1
+
+class State(Enum):
+    # for coordinates that are used by a shape.
+    OCCUPIED = 1
+    # for coordinates that are free to use.
+    UNOCCUPIED = 0
+    # for coordinates that cannot be used a shape.
+    BLOCKED = -1
+
 
 GRID_MAX_ROWS = 10
 GRID_MAX_COLS = 10
@@ -36,7 +40,7 @@ class TetrisEngine(object):
         print("\n Initializing Engine...")
         self._grid = []
         for _row in range(self.rows):
-            cols = [UNOCCUPIED for col in range(self.cols)]
+            cols = [State.UNOCCUPIED for col in range(self.cols)]
             self._grid.append(cols)
         # print(self._grid)
 
@@ -106,13 +110,13 @@ class TetrisEngine(object):
             row = coord.row
             col = coord.col
             while(row >= 0):
-                if self._grid[row][col] != OCCUPIED:
+                if self._grid[row][col] != State.OCCUPIED:
                     # do not overwrite the one used by an input.
-                    self._grid[row][col] = BLOCKED
+                    self._grid[row][col] = State.BLOCKED
                     # print("Marked {} BLOCKED".format(Coordinate(row, col)))
                 row = row - 1
             # mark the current input's coordinate as occupied.
-            self._grid[coord.row][coord.col] = OCCUPIED
+            self._grid[coord.row][coord.col] = State.OCCUPIED
             # print("Marked {} OCCUPIED".format(coord))
 
     def is_unoccupied(self, coords):
@@ -131,7 +135,7 @@ class TetrisEngine(object):
             if self.is_coord_out_of_bounds(coord):
                 return False
             # print(self._grid[row][col])
-            if self._grid[row][col] != UNOCCUPIED:
+            if self._grid[row][col] != State.UNOCCUPIED:
                 return False
         return True
 
