@@ -29,7 +29,6 @@ class InShape(object):
 
     def __init__(self, left_col=0):
         self.left_col = left_col
-        pass
 
     def get_coordinates(self, pos_cord):
         """
