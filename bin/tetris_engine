@@ -6,13 +6,13 @@ import argparse
 
 import tetris_engine
 from tetris_engine.engine import TetrisEngine
+from tetris_engine.shapes import IShape
+from tetris_engine.shapes import JShape
+from tetris_engine.shapes import LShape
 from tetris_engine.shapes import QShape
-from tetris_engine.shapes import ZShape
 from tetris_engine.shapes import SShape
 from tetris_engine.shapes import TShape
-from tetris_engine.shapes import IShape
-from tetris_engine.shapes import LShape
-from tetris_engine.shapes import JShape
+from tetris_engine.shapes import ZShape
 
 
 def main():
