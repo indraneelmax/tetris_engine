@@ -7,7 +7,6 @@ setup(
     url='https://github.com/indraneelmax/tetris_engine',
     author='Indraneel Srivastava',
     author_email='indraneel.max@gmail.com',
-    # license='BSD 2-clause',
     packages=['tetris_engine'],
     install_requires=['pytest',
                       'mock',
