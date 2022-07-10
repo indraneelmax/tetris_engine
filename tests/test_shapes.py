@@ -1,5 +1,3 @@
-import tetris_engine
-from tetris_engine.engine import TetrisEngine
 from tetris_engine.shapes import Coordinate, IShape
 from tetris_engine.shapes import JShape
 from tetris_engine.shapes import LShape
