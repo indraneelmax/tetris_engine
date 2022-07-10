@@ -35,11 +35,13 @@ def main():
 
     # Process Input file
     all_inputs = read_input(input_file)
-    # print(all_inputs)
-    print(all_inputs[0])
-
-    print(all_inputs[-1])
-    # engine = TetrisEngine()
+    engine = TetrisEngine()
+    for run in all_inputs:
+        for input in run:
+            print("Processing Input {}".format(input))
+            coordinate = engine.process_input(input)
+            print("Placed {} at {}".format(input, coordinate))
+        engine.initialize()
 
 
 def get_input_shape(input_str):
@@ -52,6 +54,8 @@ def get_input_shape(input_str):
     """
     list_input = list(input_str)
     shape_type, left_col = list_input
+    # convert to int the col
+    left_col = int(left_col)
     if shape_type == 'Q':
         return QShape(left_col=left_col)
     if shape_type == 'Z':
