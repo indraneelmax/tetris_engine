@@ -37,11 +37,11 @@ def main():
     all_inputs = read_input(input_file)
     engine = TetrisEngine()
     for run in all_inputs:
+        engine.initialize()
         for input in run:
             print("Processing Input {}".format(input))
             coordinate = engine.process_input(input)
             print("Placed {} at {}".format(input, coordinate))
-        engine.initialize()
 
 
 def get_input_shape(input_str):
