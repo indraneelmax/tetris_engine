@@ -17,7 +17,7 @@ from tetris_engine.shapes import TShape
 from tetris_engine.shapes import ZShape
 
 
-logger = get_logger(__name__)
+logger = get_logger("app")
 
 
 def main():
@@ -66,6 +66,8 @@ def write_ouput(file_path, data):
 
 def get_input_shape(input_str):
     """
+    Get the InShape object based of input string.
+
     Args:
         input_str (string): An input string rerpesenting
           an IShape (e.g 'S0', 'Z1', 'T2')
