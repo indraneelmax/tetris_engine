@@ -10,6 +10,7 @@ setup(
     # license='BSD 2-clause',
     packages=['tetris_engine'],
     install_requires=['pytest',
+                      'mock',
                       ],
     scripts=["bin/tetris_engine"],
 )
