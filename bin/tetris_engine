@@ -40,8 +40,7 @@ def main():
         engine.initialize()
         for input in run:
             print("Processing Input {}".format(input))
-            coordinate = engine.process_input(input)
-            print("Placed {} at {}".format(input, coordinate))
+            _coordinate = engine.process_input(input)
         print("Max Height - {}".format(engine.height))
 
 

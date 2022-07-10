@@ -102,6 +102,7 @@ class TetrisEngine(object):
         self.mark_coords_occupied_by_shape(coords_to_occupy)
         # print(self._grid)
         input_shape_coord = Coordinate(row, start_col)
+        print("Placed {} at {}".format(input, input_shape_coord))
         self.update_height(input_shape_coord)
         self.check_and_remove_filled_rows()
         return input_shape_coord
@@ -182,4 +183,24 @@ class TetrisEngine(object):
         Check and remove a row which has all cells
         occupied.
         """
-        pass
+        # we only check till the max height of the grid
+        for row in range(self.height):
+            all_occupied = all(
+                [self._grid[row][col] == State.OCCUPIED for col in range(self.cols)])
+            if all_occupied:
+                print("Row - {} to be removed".format(row))
+                self.remove_row(row)
+
+    def remove_row(self, row):
+        """
+        Remove a given row from the grid.
+
+        Args:
+            row (int): The row.
+        """
+        # We copy the higher row to lower row until one row above max height.
+        for cur_row in range(row + 1, self.height + 1):
+            self._grid[cur_row - 1] = self._grid[cur_row]
+        # reduce the max height too.
+        self.__height -= 1
+        # pass
