@@ -5,6 +5,14 @@ import sys
 import argparse
 
 import tetris_engine
+from tetris_engine.engine import TetrisEngine
+from tetris_engine.shapes import QShape
+from tetris_engine.shapes import ZShape
+from tetris_engine.shapes import SShape
+from tetris_engine.shapes import TShape
+from tetris_engine.shapes import IShape
+from tetris_engine.shapes import LShape
+from tetris_engine.shapes import JShape
 
 
 def main():
@@ -24,6 +32,66 @@ def main():
         print("Input file exists")
     else:
         raise IOError("{} file does not exist".format(input_file))
+
+    # Process Input file
+    all_inputs = read_input(input_file)
+    # print(all_inputs)
+    print(all_inputs[0])
+
+    print(all_inputs[-1])
+    # engine = TetrisEngine()
+
+
+def get_input_shape(input_str):
+    """
+    Args:
+        input_str (string): An input string rerpesenting
+          an IShape (e.g 'S0', 'Z1', 'T2')
+    Returns:
+        IShape: An IShape based on the input string.
+    """
+    list_input = list(input_str)
+    shape_type, left_col = list_input
+    if shape_type == 'Q':
+        return QShape(left_col=left_col)
+    if shape_type == 'Z':
+        return ZShape(left_col=left_col)
+    if shape_type == 'S':
+        return SShape(left_col=left_col)
+    if shape_type == 'T':
+        return TShape(left_col=left_col)
+    if shape_type == 'I':
+        return IShape(left_col=left_col)
+    if shape_type == 'L':
+        return LShape(left_col=left_col)
+    if shape_type == 'J':
+        return JShape(left_col=left_col)
+    raise IOError("Inavlid Input - {}".format(input_str))
+
+
+def read_input(file_path):
+    """
+    Read the input file.
+
+    Args:
+        file_path (str): Path to the input file.
+
+    Returns:
+        list(IShapes): A list of IShapes as input.
+
+    """
+    all_input_shapes = []
+    fp = open(file_path, "r")
+    for line in fp:
+        line = line.strip()  # removes '/n'
+        input_list = line.split(',')
+        input_shapes = []
+        for input_str in input_list:
+            inp_shape = get_input_shape(input_str)
+            input_shapes.append(inp_shape)
+        all_input_shapes.append(input_shapes)
+    fp.close()
+    return all_input_shapes
 
 
 if __name__ == "__main__":
