@@ -106,7 +106,7 @@ class TetrisEngine(object):
         self.mark_coords_occupied_by_shape(coords_to_occupy)
         # print(self._grid)
         input_shape_coord = Coordinate(row, start_col)
-        print("Placed {} at {}".format(input, input_shape_coord))
+        print("Placed {} at {}".format(input_shape, input_shape_coord))
         self.update_height(input_shape_coord)
         self.check_and_remove_filled_rows()
         return input_shape_coord
