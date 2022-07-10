@@ -18,7 +18,7 @@ class Coordinate(object):
         self.col = col
 
 
-class IShape(object):
+class InShape(object):
     """
     Interface for a Shape in Tetris.
     """
@@ -43,16 +43,20 @@ class IShape(object):
         """
         raise NotImplementedError("")
 
+    def __repr__(self):
+        return "InShape-{}{}".format(self.shape_type, self.left_col)
 
-class QShape(IShape):
+
+class QShape(InShape):
 
     shape_type = "Q"
 
     def __init__(self, left_col=0):
         super(QShape, self).__init__(left_col)
 
-    def get_occupied_cells(pos_cord):
-        """
+
+def get_occupied_cells(pos_cord):
+    """
         Args:
             pos_cord (Coordinate): Top left coordinate representing
               the position of the shape.
@@ -60,17 +64,17 @@ class QShape(IShape):
             list(Coordinate): List of Coordinates occupied by the
               shape.
         """
-        row = pos_cord.row
-        col = pos_cord.col
-        return [
-            Coordinate(row, col),
-            Coordinate(row, col + 1),
-            Coordinate(row - 1, col),
-            Coordinate(row - 1, col - 1),
-        ]
+    row = pos_cord.row
+    col = pos_cord.col
+    return [
+        Coordinate(row, col),
+        Coordinate(row, col + 1),
+        Coordinate(row - 1, col),
+        Coordinate(row - 1, col - 1),
+    ]
 
 
-class ZShape(IShape):
+class ZShape(InShape):
 
     shape_type = "Z"
 
@@ -78,7 +82,7 @@ class ZShape(IShape):
         super(ZShape, self).__init__(left_col)
 
 
-class SShape(IShape):
+class SShape(InShape):
 
     shape_type = "S"
 
@@ -86,7 +90,7 @@ class SShape(IShape):
         super(SShape, self).__init__(left_col)
 
 
-class TShape(IShape):
+class TShape(InShape):
 
     shape_type = "T"
 
@@ -94,7 +98,7 @@ class TShape(IShape):
         super(TShape, self).__init__(left_col)
 
 
-class IShape(IShape):
+class IShape(InShape):
 
     shape_type = "I"
 
@@ -102,7 +106,15 @@ class IShape(IShape):
         super(IShape, self).__init__(left_col)
 
 
-class JShape(IShape):
+class LShape(InShape):
+
+    shape_type = "L"
+
+    def __init__(self, left_col=0):
+        super(LShape, self).__init__(left_col)
+
+
+class JShape(InShape):
 
     shape_type = "J"
 
