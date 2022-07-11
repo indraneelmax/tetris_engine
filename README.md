@@ -3,12 +3,18 @@
 
 **How to Install**
 
-```
+```bash
 git clone https://github.com/indraneelmax/tetris_engine
 
 cd tetris_engine
 
+python -m venv testenv
+
+source testenv/bin/activate
+
 pip install .
+
+which tetris_engine
 
 ```
 **How to Run**
@@ -31,7 +37,8 @@ optional arguments:
 ```
 **Example Runs**
 ```
-tetris_engine input.txt output.txt
+
+tetris_engine bin/input.txt output.txt
 ```
 
 # Input Shapes
