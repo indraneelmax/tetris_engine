@@ -186,12 +186,19 @@ class TetrisEngine(object):
         occupied.
         """
         # we only check till the max height of the grid
-        for row in range(self.height):
-            all_occupied = all(
-                [self._grid[row][col] == State.OCCUPIED for col in range(self.cols)])
-            if all_occupied:
-                logger.info("Row - {} to be removed".format(row))
-                self.remove_row(row)
+        found_rows_to_remove = True
+        # we repeat search untill no rows to remove!
+        while (found_rows_to_remove):
+            found_rows_to_remove = False
+            for row in range(self.height):
+                all_occupied = all(
+                    [self._grid[row][col] == State.OCCUPIED for col in range(self.cols)])
+                if all_occupied:
+                    logger.info("Row - {} to be removed".format(row))
+                    self.remove_row(row)
+                    # Repeat the search again!
+                    found_rows_to_remove = True
+                    continue
 
     def remove_row(self, row):
         """
