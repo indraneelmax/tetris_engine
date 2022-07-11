@@ -21,7 +21,7 @@ logger = get_logger("app")
 
 
 def main():
-    print("Welcome to Simple Tetris Engine - {}".format(tetris_engine.__version__))
+    logger.info("Welcome to Simple Tetris Engine - {}".format(tetris_engine.__version__))
     parser = argparse.ArgumentParser(description="A Simple Tetris Engine.")
     parser.add_argument("input_file", nargs=1, help="Path to input file")
     parser.add_argument("output_file", nargs='?',
