@@ -3,15 +3,19 @@
 
 **How to Install**
 
+```
 git clone https://github.com/indraneelmax/tetris_engine
 
 cd tetris_engine
 
 pip install .
 
-tetris_engine --help
+```
+**How to Run**
 
 ```
+tetris_engine --help
+
 Welcome to Simple Tetris Engine - 0.1.0
 usage: tetris_engine [-h] input_file [output_file]
 
@@ -23,6 +27,11 @@ positional arguments:
 
 optional arguments:
   -h, --help   show this help message and exit
+
+```
+**Example Runs**
+```
+tetris_engine input.txt output.txt
 ```
 
 # Input Shapes
