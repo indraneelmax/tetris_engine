@@ -116,7 +116,7 @@ These coordinates are in order from top to bottom and left to right order.
 For positioning in the grid, we use the top left bounding box coordinate for the shape.
 (2,0) will be the placement position for the above shape.
 The `InShape` interface has `get_coordinates(pos)` call to return the occupied coodinates based on the
-input grid position coordinate.
+input grid position coordinate. Ideally one would create a new class implementing above shape as e.g here InvLShape).
 ```
 [(2,1) (1,1) (0,0) (0,1)] = InvLShape.get_coordinates((2,0))
 ```
