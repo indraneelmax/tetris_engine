@@ -98,7 +98,7 @@ app - INFO - Wrote - output.txt
 
 # Input Shapes
 
-An Input shape as for example an inverted L shape below occupies coordinates -
+An Input shape as for example an J shape below occupies coordinates -
 (2,1) (1,1) (0,0) (0,1)
 These coordinates are in order from top to bottom and left to right order.
 
@@ -116,7 +116,9 @@ These coordinates are in order from top to bottom and left to right order.
 For positioning in the grid, we use the top left bounding box coordinate for the shape.
 (2,0) will be the placement position for the above shape.
 The `InShape` interface has `get_coordinates(pos)` call to return the occupied coodinates based on the
-input grid position coordinate. Ideally one would create a new class implementing above shape as e.g here InvLShape).
+input grid position coordinate. Ideally one would create a new class implementing above shape as e.g here JShape).
 ```
-[(2,1) (1,1) (0,0) (0,1)] = InvLShape.get_coordinates((2,0))
+[(2,1) (1,1) (0,0) (0,1)] = JShape.get_coordinates((2,0))
+
+Note - To clarify, if J is to be placed at col 2 that means the left most occupied coordinate of J will be at col 2
 ```
