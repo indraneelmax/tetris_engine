@@ -70,9 +70,9 @@ def get_input_shape(input_str):
 
     Args:
         input_str (string): An input string rerpesenting
-          an IShape (e.g 'S0', 'Z1', 'T2')
+          an InShape (e.g 'S0', 'Z1', 'T2')
     Returns:
-        IShape: An IShape based on the input string.
+        InShape: An InShape obj based on the input string.
     """
     list_input = list(input_str)
     shape_type, left_col = list_input
