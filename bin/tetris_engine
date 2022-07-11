@@ -103,7 +103,7 @@ def read_input(file_path):
         file_path (str): Path to the input file.
 
     Returns:
-        list(IShapes): A list of IShapes as input.
+        list(InShape): A list of InShape as input.
 
     """
     all_input_shapes = []
